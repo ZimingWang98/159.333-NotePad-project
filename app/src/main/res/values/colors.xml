@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#ffffff</color>
+    <!--Color for the button-->
+    <color name="start_color">#4c84ff</color>
+    <color name="end_color">#4c84ff</color>
+    <!--Color for the tab and text-->
+    <color name="tab_indicator_color">#c0c0c0</color>
+    <color name="welcome_title_color">#000000</color>
+    <color name="welcome_description_color">#656565</color>
+
+</resources>
