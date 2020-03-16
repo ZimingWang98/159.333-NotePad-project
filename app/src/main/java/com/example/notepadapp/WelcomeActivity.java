@@ -43,6 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //hide action bar
         getSupportActionBar().hide();
 
+        //just make a comment to test git
         //initial view
         tab=findViewById(R.id.tab_layout);
         btnNext=findViewById(R.id.btn_next);
