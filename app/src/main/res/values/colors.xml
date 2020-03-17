@@ -11,4 +11,7 @@
     <color name="welcome_title_color">#000000</color>
     <color name="welcome_description_color">#656565</color>
 
+    <!--Color for the button-->
+    <color name="colorButton">#1077B5</color>
+    <color name="colorTemp">#85E0E4</color>
 </resources>
