@@ -1,4 +1,4 @@
-package com.example.notepadapp;
+package com.example.notepadapp.welcome;
 
 public class ScreenItem {
     String Title,Description;
