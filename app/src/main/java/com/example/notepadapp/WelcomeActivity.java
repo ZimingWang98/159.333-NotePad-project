@@ -41,7 +41,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_welcome);
         //hide action bar
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         //just make a comment to test git
         //initial view

@@ -14,4 +14,7 @@
     <!--Color for the button-->
     <color name="colorButton">#1077B5</color>
     <color name="colorTemp">#85E0E4</color>
+
+    <!--Color for Login page-->
+    <color name="colorLogin">#1076D9</color>
 </resources>
