@@ -1,4 +1,4 @@
-package com.example.notepadapp;
+package com.example.notepadapp.welcome;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,10 +9,13 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.notepadapp.R;
+import com.example.notepadapp.login.LoginActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //check the app is the first open or not
         if(restorePrefData()){
-            Intent loginActivity=new Intent(getApplicationContext(),LoginActivity.class);
+            Intent loginActivity=new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginActivity);
         }
         setContentView(R.layout.activity_welcome);
