@@ -109,7 +109,7 @@
                 android:layout_height="22dp"
                 android:layout_gravity="left|center"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/passwd"
+                android:background="@drawable/password"
                 android:visibility="visible"/>
         </FrameLayout>
         <LinearLayout

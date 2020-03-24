@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 //import from DtaBaseHelper class
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
@@ -71,6 +73,42 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         switch (view.getId()){
             case BACK:
                 Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+                break;
+            case CONFIRM:
+                username=ed_username.getText().toString();
+                psw=ed_psw.getText().toString().trim();
+                conpsw=ed_con_psw.getText().toString().trim();
+                Log.d("username+",username);
+                Log.d("password",psw);
+                Log.d("conpassword",conpsw);
+                //check user enter the three required information are not empty
+                if(username.equals("")||psw.equals("")){
+                    Toast.makeText(RegisterActivity.this,"Oops! Please enter the username, password",Toast.LENGTH_SHORT).show();
+                }else if(conpsw.equals("")){
+                    Toast.makeText(RegisterActivity.this,"Oops! The confirm password should not be empty",Toast.LENGTH_SHORT).show();
+                }else{
+                    if(username.length()>MAX_SIZE){
+                        Toast.makeText(RegisterActivity.this,"Too many character",Toast.LENGTH_SHORT).show();
+                    }else {
+                        if(checkIsDataExist(username)){
+                            Toast.makeText(RegisterActivity.this,"User already existed",Toast.LENGTH_SHORT).show();
+                        }else{
+                            if(psw.equals(conpsw)){
+                                registerUser(username,psw);
+                                Toast.makeText(RegisterActivity.this,username+" Welcome!",Toast.LENGTH_SHORT).show();
+                                Intent intent1=new Intent(RegisterActivity.this,LoginActivity.class);
+                                intent1.putExtra("Username",username);
+                                intent1.putExtra("Password",psw);
+                                setResult(RESULT_OK,intent1);
+                                finish();
+                            }else {
+                                Toast.makeText(RegisterActivity.this,"Please confirm your enter password are same",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+                break;
         }
 
     }
