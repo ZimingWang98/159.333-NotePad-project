@@ -68,11 +68,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        select(usernameQuery);
-    }
+
 
     private void init(){
         usernameQuery=getIntent().getStringExtra("Username");
@@ -123,8 +119,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         });
     }
     private void select(String usernameQuery){
+        String[] arg=new String[]{usernameQuery};
         mCursor=db.rawQuery("SELECT * FROM " + NOTE_TABLE +" where "+USERNAME+"=?", new String[]{usernameQuery});
         mAdapter=new MainViewAdapter(this,mCursor);
         list.setAdapter(mAdapter);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        select(usernameQuery);
     }
 }

@@ -31,10 +31,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + USERNAME + " TEXT PRIMARY KEY,"
                 + PASSWORD +" TEXT )");
         //new table for saving the note detail
-        sqLiteDatabase.execSQL(" CREATE TABLE " + NOTE_TABLE +" ( "
-                +ID + "INTEGER PRIMARY KEY,"
-                + CONTENT + " TEXT ,"
-                + DATE+" TEXT )");
+        sqLiteDatabase.execSQL("CREATE TABLE " + NOTE_TABLE +" ( "
+                + ID + " INTEGER PRIMARY KEY,"
+                + USERNAME +" TEXT, "
+                + CONTENT + " TEXT, "
+                + DATE +" TEXT) ");
 
     }
 

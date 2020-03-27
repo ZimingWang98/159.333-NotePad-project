@@ -9,9 +9,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorTemp"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
     <Button
+        android:id="@+id/photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="left|top"
@@ -20,6 +21,7 @@
         />
     </LinearLayout>
     <EditText
+        android:id="@+id/et_add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"

@@ -18,7 +18,7 @@
         android:layout_height="20dp"
         android:textSize="15sp"
         android:text="tv"
-        android:textColor="@color/colorButton"
+        android:textColor="@color/welcome_description_color"
         android:id="@+id/tv_content"
         />
     <TextView
@@ -27,7 +27,7 @@
         android:id="@+id/tv_date"
         android:textSize="15sp"
         android:text="tv"
-        android:textColor="@color/colorButton"
+        android:textColor="@color/welcome_description_color"
         />
 </LinearLayout>
 </LinearLayout>
