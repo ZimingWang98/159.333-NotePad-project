@@ -25,6 +25,7 @@ import static com.example.notepadapp.database.DatabaseHelper.USER_TABLE;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
+
     private ImageView mImageView;
     private EditText edPsw,edUser;
     private TextView register;

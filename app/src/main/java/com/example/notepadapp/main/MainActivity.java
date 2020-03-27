@@ -119,6 +119,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         });
     }
     private void select(String usernameQuery){
+        //select user from the database
         String[] arg=new String[]{usernameQuery};
         mCursor=db.rawQuery("SELECT * FROM " + NOTE_TABLE +" where "+USERNAME+"=?", new String[]{usernameQuery});
         mAdapter=new MainViewAdapter(this,mCursor);

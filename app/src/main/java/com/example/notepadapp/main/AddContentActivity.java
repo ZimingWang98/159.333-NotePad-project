@@ -34,6 +34,7 @@ public class AddContentActivity extends Activity implements View.OnClickListener
     }
 
     private void init() {
+        //init the view
 
         photo=(Button)findViewById(R.id.photo);
         content=getIntent().getStringExtra("key");
