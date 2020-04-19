@@ -20,6 +20,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
 import com.example.notepadapp.login.LoginActivity;
+import com.example.notepadapp.search.SearchActivity;
+import com.example.notepadapp.weather.WeatherActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.example.notepadapp.database.DatabaseHelper.USERNAME;
@@ -94,6 +96,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                         break;
                     case R.id.action_exist:
                         finish();
+                        break;
+                    case R.id.action_weather:
+                        Intent w=new Intent(MainActivity.this, WeatherActivity.class);
+                        startActivity(w);
+                        break;
+                    case R.id.action_search:
+                        Intent s=new Intent(MainActivity.this, SearchActivity.class);
+                        startActivity(s);
                         break;
 
                 }
