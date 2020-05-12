@@ -1,7 +1,9 @@
 package com.example.notepadapp.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
+import com.example.notepadapp.login.LoginActivity;
+import com.example.notepadapp.login.RegisterActivity;
 
 public class SelectActivity extends Activity implements View.OnClickListener {
     private Button delete,back;
@@ -24,14 +28,15 @@ public class SelectActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        back=(Button)findViewById(R.id.select_back);
-        delete=(Button)findViewById(R.id.select_delete);
-        tv=(TextView)findViewById(R.id.select_tv);
+        back= findViewById(R.id.select_back);
+        delete= findViewById(R.id.select_delete);
+        tv= findViewById(R.id.select_tv);
         helper=new DatabaseHelper(this);
         db=helper.getWritableDatabase();
         back.setOnClickListener(this);
         delete.setOnClickListener(this);
         tv.setText(getIntent().getStringExtra(helper.CONTENT));
+        tv.setTextColor(Color.rgb(255,255,255));
     }
 
     @Override
@@ -40,6 +45,7 @@ public class SelectActivity extends Activity implements View.OnClickListener {
             case R.id.select_delete:
                 deleteDate();
                 finish();
+                break;
             case R.id.select_back:
                 finish();
                 break;

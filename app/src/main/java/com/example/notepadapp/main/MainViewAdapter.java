@@ -2,6 +2,7 @@ package com.example.notepadapp.main;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,9 @@ public class MainViewAdapter extends BaseAdapter {
         String content=mCursor.getString(mCursor.getColumnIndex(CONTENT));
         String date=mCursor.getString(mCursor.getColumnIndex(DATE));
         tv_content.setText(content);
+        tv_content.setTextColor(Color.rgb(255,255,255));
         tv_date.setText(date);
+        tv_date.setTextColor(Color.rgb(255,255,255));
         return mLayout;
     }
 }
