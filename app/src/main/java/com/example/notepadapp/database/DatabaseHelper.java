@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ID="_id";
     public static final String DATE="date";
     public static final String CONTENT="content";
+    public static final String PHOTO="photo";
 
 
 
@@ -36,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ID + " INTEGER PRIMARY KEY,"
                 + USERNAME +" TEXT, "
                 + CONTENT + " TEXT, "
+                + PHOTO + " TEXT, "
                 + DATE +" TEXT) ");
 
     }

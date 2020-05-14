@@ -124,6 +124,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 intent.putExtra(mHelper.USERNAME,mCursor.getString(mCursor.getColumnIndex(mHelper.USERNAME)));
                 intent.putExtra(mHelper.CONTENT,mCursor.getString(mCursor.getColumnIndex(mHelper.CONTENT)));
                 intent.putExtra(mHelper.DATE,mCursor.getString(mCursor.getColumnIndex(mHelper.DATE)));
+                intent.putExtra(mHelper.PHOTO,mCursor.getString(mCursor.getColumnIndex(mHelper.PHOTO)));
                 startActivity(intent);
             }
         });
