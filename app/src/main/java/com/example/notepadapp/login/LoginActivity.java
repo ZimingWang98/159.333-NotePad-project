@@ -110,7 +110,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     }
 
     private boolean loginCheck(String username, String psw) {
-        SQLiteDatabase db=mDb.getWritableDatabase();
+        SQLiteDatabase db = mDb.getWritableDatabase();
         String sql="select * from "+ USER_TABLE +" where "+ USERNAME +"=? and "+ PASSWORD + "=?";
         Cursor cursor=db.rawQuery(sql,new String[]{username,psw});
         if (cursor.moveToFirst()){

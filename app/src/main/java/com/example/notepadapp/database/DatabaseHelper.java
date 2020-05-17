@@ -17,10 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CONTENT="content";
     public static final String PHOTO="photo";
 
-
-
-
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }

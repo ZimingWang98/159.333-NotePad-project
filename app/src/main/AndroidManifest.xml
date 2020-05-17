@@ -25,6 +25,7 @@
         <activity android:name=".main.AddContentActivity"/>
         <activity android:name=".main.ChangePasswordActivity"/>
         <activity android:name=".main.SelectActivity"/>
+        <activity android:name=".search.SearchActivity" />
 
     </application>
 

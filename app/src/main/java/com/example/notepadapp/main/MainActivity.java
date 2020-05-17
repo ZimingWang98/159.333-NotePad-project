@@ -103,6 +103,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                         break;
                     case R.id.action_search:
                         Intent s=new Intent(MainActivity.this, SearchActivity.class);
+                        s.putExtra("Username",usernameQuery);
                         startActivity(s);
                         break;
 
