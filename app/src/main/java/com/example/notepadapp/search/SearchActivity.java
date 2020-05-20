@@ -123,10 +123,10 @@ public class SearchActivity extends Activity {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor;
         if (isAllUser) {
-            cursor = db.rawQuery("SELECT * FROM " + NOTE_TABLE +" where "+CONTENT+"=?", new String[]{text});
+            cursor = db.rawQuery("SELECT * FROM " + NOTE_TABLE +" where "+CONTENT+" like ?", new String[]{"%"+text+"%"});
         }else{
             cursor = db.rawQuery("SELECT * FROM " + NOTE_TABLE +" where "+USERNAME+"=?"
-                    +" and "+ CONTENT + "=?" , new String[]{usernameQuery, text});
+                    +" and "+ CONTENT + " like ?" , new String[]{usernameQuery, "%"+text+"%"});
         }
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(ID));
