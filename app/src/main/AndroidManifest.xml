@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.notepadapp">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +30,7 @@
         <activity android:name=".main.AddContentActivity"/>
         <activity android:name=".main.ChangePasswordActivity"/>
         <activity android:name=".main.SelectActivity"/>
-        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".weather.WeatherActivity" />
 
     </application>
 

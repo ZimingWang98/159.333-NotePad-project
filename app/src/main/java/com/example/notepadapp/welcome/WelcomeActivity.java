@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -41,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if(restorePrefData()){
             Intent loginActivity=new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginActivity);
+            return;
         }
         setContentView(R.layout.activity_welcome);
         //hide action bar

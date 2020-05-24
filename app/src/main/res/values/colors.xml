@@ -17,4 +17,8 @@
 
     <!--Color for Login page-->
     <color name="colorLogin">#1076D9</color>
+
+    <!--Color for Weather page-->
+    <color name="colorWeather">#ffffff</color>
+
 </resources>
