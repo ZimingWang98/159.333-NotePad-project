@@ -31,7 +31,7 @@
         <activity android:name=".main.ChangePasswordActivity"/>
         <activity android:name=".main.SelectActivity"/>
         <activity android:name=".weather.WeatherActivity" />
-
+        <activity android:name=".search.SearchActivity" />
     </application>
 
 </manifest>
