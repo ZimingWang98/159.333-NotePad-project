@@ -8,11 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommonUtil {
-    /**
-     * 从asset路径下读取对应文件转String输出
-     * @param mContext
-     * @return
-     */
+
     public static String getJson(Context mContext, String fileName) {
         StringBuilder sb = new StringBuilder();
         AssetManager am = mContext.getAssets();
