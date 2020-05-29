@@ -121,7 +121,7 @@ public class AddContentActivity extends Activity implements View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SYSTEM_PIC && resultCode == RESULT_OK && null != data) {
-            if (Build.VERSION.SDK_INT >= 19) {
+            if (Build.VERSION.SDK_INT >= 23) {
                 handleImageOnKitkat(data);
             } else {
                 handleImageBeforeKitkat(data);

@@ -16,7 +16,8 @@
         android:background="@color/colorLogin"
         android:gravity="center"
         android:textColor="@color/colorButton"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:scrollbars="vertical"/>
     <ImageView
         android:id="@+id/imageViewSelect"
         android:layout_width="match_parent"

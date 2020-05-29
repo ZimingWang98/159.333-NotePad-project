@@ -1,12 +1,12 @@
 package com.example.notepadapp.main;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,8 +15,7 @@ import android.widget.Toast;
 
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
-import com.example.notepadapp.login.LoginActivity;
-import com.example.notepadapp.login.RegisterActivity;
+
 
 public class SelectActivity extends Activity implements View.OnClickListener {
     private Button delete,back;
@@ -29,6 +28,7 @@ public class SelectActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+
         init();
     }
 
@@ -42,6 +42,7 @@ public class SelectActivity extends Activity implements View.OnClickListener {
         back.setOnClickListener(this);
         delete.setOnClickListener(this);
         tv.setText(getIntent().getStringExtra(helper.CONTENT));
+        tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         tv.setTextColor(Color.rgb(255,255,255));
         displayImage(getIntent().getStringExtra(helper.PHOTO));
     }
