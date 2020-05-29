@@ -8,42 +8,52 @@
     android:background="@drawable/edittext_selector"
     android:layout_marginTop="2dp"
     android:layout_gravity="center">
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_selector"
-            android:gravity="left|top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_dark"
+            android:gravity="center|top"
             android:src="@drawable/camera"
             android:text="Choose a photo"
             android:textColor="#000000"
-            android:textColorHint="#E91E63" />
+            android:textColorHint="#E91E63"
+            android:textSize="30sp" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/et_add"
-        android:layout_width="fill_parent"
-        android:layout_height="473dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/colorButton"
-        android:gravity="center"
-        android:hint="Whats news today ?"
-        android:textColor="#000000" />
-
-    <ImageView
-        android:id="@+id/imageViewAdd"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_weight="2"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorButton"
+            android:gravity="center"
+            android:hint="What's news today ?"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/imageViewAdd"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,19 +61,20 @@
         android:background="@color/colorTemp"
         android:gravity="center"
         android:orientation="horizontal">
+
         <Button
+            android:id="@+id/add_save"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:id="@+id/add_save"
-            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@drawable/btn_selector"
             android:text="Save"
             android:textAllCaps="false"
             android:textColor="@color/colorLogin"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/add_cancel"
             android:layout_width="wrap_content"
