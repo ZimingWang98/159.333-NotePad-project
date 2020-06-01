@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.View;
@@ -30,6 +32,10 @@ import androidx.core.content.ContextCompat;
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -169,13 +175,32 @@ public class AddContentActivity extends Activity implements View.OnClickListener
             }
             cursor.close();
         }
-        photoPath = path;
         return path;
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        // save the photo
+        File appDir = new File(Environment.getExternalStorageDirectory(),"159_333");
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = "159_333" + System.currentTimeMillis() + ".png";
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        photoPath = file.getAbsolutePath();
     }
 
     private void displayImage(String imagePath) {
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            saveBitmap(bitmap);
             mImageView.setImageBitmap(bitmap);
         } else {
             Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
