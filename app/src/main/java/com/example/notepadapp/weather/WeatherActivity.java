@@ -68,6 +68,7 @@ public class WeatherActivity extends Activity {
     }
 
     private void bindViews() {
+        //four parts of Weather page
         tv_city = findViewById(R.id.tv_city);
         iv_weather = findViewById(R.id.iv_weather);
         tv_weather = findViewById(R.id.tv_weather);
@@ -80,6 +81,7 @@ public class WeatherActivity extends Activity {
     private void requestWeather(String lat, String lng) {
         final SVProgressHUD hud = new SVProgressHUD(this);
         hud.show();
+        //request for weather information
         String url = String.format("https://api.weatherapi.com/v1/current.json?" +
                 "key=847801a0918f49ab95a32001202305&q=%s,%s", lat, lng);
         Request request = new Request.Builder()
@@ -106,7 +108,6 @@ public class WeatherActivity extends Activity {
             }
         });
     }
-
     private List<WeatherBean.ConditionsBean> conditions;
 
     private WeatherBean.ConditionsBean findCondition(int code) {
