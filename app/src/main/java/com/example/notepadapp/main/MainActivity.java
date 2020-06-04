@@ -77,25 +77,25 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 
 
-    private void init(){
-        usernameQuery=getIntent().getStringExtra("Username");
-        drawerLayout=(DrawerLayout)findViewById(R.id.main_activity_drawer);
-        navigationView=(NavigationView)findViewById(R.id.navigation_view);
-        menu=(ImageView)findViewById(R.id.menu);
-        head=navigationView.getHeaderView(0);
+    private void init() {
+        usernameQuery = getIntent().getStringExtra("Username");
+        drawerLayout = (DrawerLayout) findViewById(R.id.main_activity_drawer);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        menu = (ImageView) findViewById(R.id.menu);
+        head = navigationView.getHeaderView(0);
         menu.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawer(navigationView);
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_change_psw:
-                        Intent intent=new Intent(MainActivity.this,ChangePasswordActivity.class);
-                        intent.putExtra("Username",usernameQuery);
+                        Intent intent = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                        intent.putExtra("Username", usernameQuery);
                         startActivity(intent);
                         break;
                     case R.id.action_login:
-                        Intent intent1=new Intent(MainActivity.this, LoginActivity.class);
+                        Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent1);
                         finish();
                         break;
@@ -107,14 +107,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(MainActivity.this, new
                                     String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                        }else {
-                        Intent w=new Intent(MainActivity.this, WeatherActivity.class);
-                        startActivity(w);
+                        } else {
+                            Intent w = new Intent(MainActivity.this, WeatherActivity.class);
+                            startActivity(w);
                         }
                         break;
                     case R.id.action_search:
-                        Intent s=new Intent(MainActivity.this, SearchActivity.class);
-                        s.putExtra("Username",usernameQuery);
+                        Intent s = new Intent(MainActivity.this, SearchActivity.class);
+                        s.putExtra("Username", usernameQuery);
                         startActivity(s);
                         break;
 
@@ -122,21 +122,21 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 return true;
             }
         });
-        list=(ListView)findViewById(R.id.list);
-        newNote=(Button)findViewById(R.id.newnote_btn);
+        list = (ListView) findViewById(R.id.list);
+        newNote = (Button) findViewById(R.id.newnote_btn);
         newNote.setOnClickListener(this);
-        mHelper=new DatabaseHelper(this);
-        db=mHelper.getReadableDatabase();
+        mHelper = new DatabaseHelper(this);
+        db = mHelper.getReadableDatabase();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mCursor.moveToPosition(i);
-                Intent intent=new Intent(MainActivity.this,SelectActivity.class);
-                intent.putExtra(mHelper.ID,mCursor.getInt(mCursor.getColumnIndex(mHelper.ID)));
-                intent.putExtra(mHelper.USERNAME,mCursor.getString(mCursor.getColumnIndex(mHelper.USERNAME)));
-                intent.putExtra(mHelper.CONTENT,mCursor.getString(mCursor.getColumnIndex(mHelper.CONTENT)));
-                intent.putExtra(mHelper.DATE,mCursor.getString(mCursor.getColumnIndex(mHelper.DATE)));
-                intent.putExtra(mHelper.PHOTO,mCursor.getString(mCursor.getColumnIndex(mHelper.PHOTO)));
+                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+                intent.putExtra(mHelper.ID, mCursor.getInt(mCursor.getColumnIndex(mHelper.ID)));
+                intent.putExtra(mHelper.USERNAME, mCursor.getString(mCursor.getColumnIndex(mHelper.USERNAME)));
+                intent.putExtra(mHelper.CONTENT, mCursor.getString(mCursor.getColumnIndex(mHelper.CONTENT)));
+                intent.putExtra(mHelper.DATE, mCursor.getString(mCursor.getColumnIndex(mHelper.DATE)));
+                intent.putExtra(mHelper.PHOTO, mCursor.getString(mCursor.getColumnIndex(mHelper.PHOTO)));
                 startActivity(intent);
             }
         });
