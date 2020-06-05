@@ -22,10 +22,6 @@
     android:title="Search"
     android:icon="@drawable/search"/>
 
-    <item
-        android:id="@+id/action_exist"
-        android:orderInCategory="100"
-        android:title="Exist"
-        android:icon="@drawable/exit"/>
+
 
 </menu>

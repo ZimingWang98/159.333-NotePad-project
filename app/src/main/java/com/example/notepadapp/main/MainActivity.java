@@ -99,9 +99,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                         startActivity(intent1);
                         finish();
                         break;
-                    case R.id.action_exist:
-                        finish();
-                        break;
+
                     case R.id.action_weather:
                         if (ContextCompat.checkSelfPermission(MainActivity.this,
                                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
