@@ -56,9 +56,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
         final List<ScreenItem> mList=new ArrayList<>();
-        mList.add(new ScreenItem("Step   one","Register your own account",R.drawable.register));
-        mList.add(new ScreenItem("Step   Two","Log into your account",R.drawable.login));
-        mList.add(new ScreenItem("Step Three","Enjoy your personal secret note",R.drawable.enjoy));
+        mList.add(new ScreenItem("   Register","",R.drawable.register));
+        mList.add(new ScreenItem("      Login","",R.drawable.login));
+        mList.add(new ScreenItem("      Enjoy","",R.drawable.enjoy));
 
         //set viewpager
         screenPager=findViewById(R.id.screen_pager);
