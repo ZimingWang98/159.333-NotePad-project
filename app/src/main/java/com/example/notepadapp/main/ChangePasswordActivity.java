@@ -19,6 +19,10 @@ import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
 import com.example.notepadapp.welcome.WelcomeActivity;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import static com.example.notepadapp.database.DatabaseHelper.USERNAME;
 import static com.example.notepadapp.database.DatabaseHelper.PASSWORD;
 import static com.example.notepadapp.database.DatabaseHelper.USER_TABLE;
@@ -46,6 +50,21 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
         confirm.setOnClickListener(this);
     }
 
+    public static String getStringMD5(String sourceStr) {
+        String s = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //这两行代码的作用是：
+            // 将bytes数组转换为BigInterger类型。1，表示 +，即正数。
+            BigInteger bigInt = new BigInteger(1, md.digest(sourceStr.getBytes()));
+            // 通过format方法，获取32位的十六进制的字符串。032,代表高位补0 32位，X代表十六进制的整形数据。
+            //为什么是32位？因为MD5算法返回的时一个128bit的整数，我们习惯于用16进制来表示，那就是32位。
+            s = String.format("%032x", bigInt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId())
@@ -55,7 +74,11 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                 break;
             case R.id.change_confirm:
                 oldpsw=change_old_et.getText().toString().trim();
+
+
                 newpsw=change_new_et.getText().toString().trim();
+                String oldpswmd5=getStringMD5(oldpsw);
+                String newpswmd5=getStringMD5(newpsw);
                 if(oldpsw.equals("")||newpsw.equals(""))
                 {
                     Toast.makeText(ChangePasswordActivity.this,"Cannot be empty",Toast.LENGTH_SHORT).show();
@@ -63,8 +86,8 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                     if(oldpsw.equals(newpsw)){
                         Toast.makeText(ChangePasswordActivity.this,"New password should be different！",Toast.LENGTH_SHORT).show();
                     }else {
-                        if(checkOldpsw(username,oldpsw)){
-                            changePsw(username,newpsw);
+                        if(checkOldpsw(username,oldpswmd5)){
+                            changePsw(username,newpswmd5);
                             finish();
                             Toast.makeText(ChangePasswordActivity.this,"New password save!",Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(ChangePasswordActivity.this, WelcomeActivity.class);
@@ -85,6 +108,7 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
         DatabaseHelper helper=new DatabaseHelper(this);
         SQLiteDatabase db=helper.getWritableDatabase();
         ContentValues cv=new ContentValues();
+        //String newpswmd5=getStringMD5(newpsw);
         cv.put(PASSWORD,newpsw);
         String [] arg={username};
         long row=db.update(USER_TABLE,cv,USERNAME+" =?",arg);
@@ -94,6 +118,7 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
     private boolean checkOldpsw(String username, String oldpsw) {
         DatabaseHelper helper=new DatabaseHelper(this);
         SQLiteDatabase db=helper.getWritableDatabase();
+       // String oldpswmd5=getStringMD5(oldpsw);
         String sql="select * from " + USER_TABLE+" where "+USERNAME+"=? and "+PASSWORD+" =?";
         Cursor cursor=db.rawQuery(sql,new String[]{username,oldpsw});
         if(cursor.getCount()>0){

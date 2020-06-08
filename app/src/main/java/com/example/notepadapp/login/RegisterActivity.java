@@ -3,6 +3,7 @@ package com.example.notepadapp.login;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import android.widget.Toast;
 //import from DtaBaseHelper class
 import com.example.notepadapp.R;
 import com.example.notepadapp.database.DatabaseHelper;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import static com.example.notepadapp.database.DatabaseHelper.PASSWORD;
 import static com.example.notepadapp.database.DatabaseHelper.USERNAME;
@@ -29,6 +34,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private Button confirm;
     private DatabaseHelper mDb;
     private String username,psw,conpsw;
+   // private SharedPreferences sp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +53,26 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         confirm.setOnClickListener(this);
         back=(TextView)findViewById(R.id.back);
         back.setOnClickListener(this);
+       // sp = getSharedPreferences("config", MODE_PRIVATE);
+
 
     }
 
+    public static String getStringMD5(String sourceStr) {
+        String s = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //这两行代码的作用是：
+            // 将bytes数组转换为BigInterger类型。1，表示 +，即正数。
+            BigInteger bigInt = new BigInteger(1, md.digest(sourceStr.getBytes()));
+            // 通过format方法，获取32位的十六进制的字符串。032,代表高位补0 32位，X代表十六进制的整形数据。
+            //为什么是32位？因为MD5算法返回的时一个128bit的整数，我们习惯于用16进制来表示，那就是32位。
+            s = String.format("%032x", bigInt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
     private boolean checkIsDataExist(String username){
         SQLiteDatabase db=mDb.getWritableDatabase();
         String sql="select * from "+USER_TABLE+" where "+ USERNAME + "=?";
@@ -64,6 +88,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         SQLiteDatabase db=mDb.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(USERNAME,username);
+        //MD5 for the 加密
+        //String md5=getStringMD5(psw);
         values.put(PASSWORD,psw);
         db.insert(USER_TABLE,null,values);
         db.close();
@@ -79,9 +105,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 username=ed_username.getText().toString();
                 psw=ed_psw.getText().toString().trim();
                 conpsw=ed_con_psw.getText().toString().trim();
+                String pswmd5=getStringMD5(psw);
+                String conpswmd5=getStringMD5(conpsw);
                 Log.d("username+",username);
-                Log.d("password",psw);
-                Log.d("conpassword",conpsw);
+                Log.d("password",pswmd5);
+                Log.d("conpassword",conpswmd5);
                 //check user enter the three required information are not empty
                 if(username.equals("")||psw.equals("")){
                     Toast.makeText(RegisterActivity.this,"Oops! Please enter the username, password",Toast.LENGTH_SHORT).show();
@@ -94,8 +122,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                         if(checkIsDataExist(username)){
                             Toast.makeText(RegisterActivity.this,"User already existed",Toast.LENGTH_SHORT).show();
                         }else{
-                            if(psw.equals(conpsw)){
-                                registerUser(username,psw);
+                            if(pswmd5.equals(conpswmd5)){
+                                registerUser(username,pswmd5);
                                 Toast.makeText(RegisterActivity.this,username+" Welcome!",Toast.LENGTH_SHORT).show();
                                 Intent intent1=new Intent(RegisterActivity.this,LoginActivity.class);
                                 intent1.putExtra("Username",username);
